@@ -50,12 +50,30 @@ pandasで列名を「ヘッダー（header）」、行名を「インデック�
   # 特定の行だけを読み込む場合は、無名関数（ラムダ式）を使うと便利。
   # 特に行数が多いファイルから特定の行だけを読み込みたいたいときはスキップする行番号を指定するより楽。
   
-
-
+● ファイルの末「行」を除外して読み込む場合
+  df_none_skipfooter = pd.read_csv('data/src/sample.csv', header=None, skipfooter=1, engine='python')
+  #skipfooterで最後の1「行」を除外（末尾を数えるときは0を含まない）
+  #engine='python'は警告防止
   
+● 最初の数行だけを読み込む場合
+  df_none_nrows = pd.read_csv('data/src/sample.csv', header=None, nrows=2)
+  #nrowsで最初の2行（0行目と1行目）を読み込み
   
+--------------------------------------------------------------------------------------------
+● 型を指定して読み込む場合
+  df_str = pd.read_csv('data/src/sample_header_index_dtype.csv', index_col=0, dtype=str)
   
+  # この場合すべての値がstrになる
+  # 欠損値は常にfloat
+  # 指定がなければ
   
+● 列の型を指定したいとき
+  df_str_col = pd.read_csv('data/src/sample_header_index_dtype.csv', index_col=0, dtype={'b': str, 'c': str})
+  #dtypeを辞書型で指定、列の指定はインデックスナンバーでもOK
+  
+ --------------------------------------------------------------------------------------------
+ 
+ 
   
   
   
