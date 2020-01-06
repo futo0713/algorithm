@@ -1,1 +1,15 @@
+エラー名：Error tokenizing data.
+# 1行目とかのセルに欠損があって、正しく読み込めていない
+# カラム名を指定してあげれば良い、names=[hoge1,hoge2,...]
 
+df.head() / df.tail()
+# dfの最初/最後の5行を表示、カッコ内に数字を入れるとその行分表示
+
+# データフレームの概要確認
+dataframeの行数・列数の確認 ==> df.shape
+indexの確認 ==>d f.index
+columnの確認 ==> df.columns
+dataframeの各列のデータ型を確認 ==> df.dtypes
+
+# 任意の列だけ取り出したい場合
+df[['name', 'kcal']].head()
