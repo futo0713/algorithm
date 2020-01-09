@@ -6,22 +6,22 @@ pandasで列名を「ヘッダー（header）」、行名を「インデック�
 ● csvファイルを読み込んでデータフレームを作成
 -------------
 
-  pd.read_csv()
+	pd.read_csv()
   
   デフォルトの区切りがカンマ「,」
 
-  csv_data  = pd.read_csv('./path/to/hoge.csv')
+	csv_data  = pd.read_csv('./path/to/hoge.csv')
   
   こんな感じ
 
-● csvファイルを読み込んでデータフレームを作成
+● Tsvファイルを読み込んでデータフレームを作成
 -------------
 
-  pd.read_table()
+	pd.read_table()
   
   デフォルトの区切りがタブ「\t」
   
-  tsv_data  = pd.read_csv('./path/to/hoge.csv', delimiter='\t')
+	tsv_data  = pd.read_csv('./path/to/hoge.csv', delimiter='\t')
   
   これでも可、delimiterで区切り文字を指定
   
@@ -40,14 +40,14 @@ pandasで列名を「ヘッダー（header）」、行名を「インデック�
 ● headerの位置を指定したいとき
 -------------
 
-  df_header_2 = pd.read_csv('data/src/sample_header.csv', header=2)
+	df_header_2 = pd.read_csv('data/src/sample_header.csv', header=2)
   
   （0始まりで）1行目がヘッダーになり、2行目から始まる
 
 ● indexがあるとき
 -------------
 
-  df_header_index_col = pd.read_csv('data/src/sample_header_index.csv', index_col=0)
+	df_header_index_col = pd.read_csv('data/src/sample_header_index.csv', index_col=0)
   
   0列目がindexとして認識される
   
@@ -55,7 +55,7 @@ pandasで列名を「ヘッダー（header）」、行名を「インデック�
 ● 特定の「列」だけを読み込む場合
 -------------
 
-  df_none_usecols = pd.read_csv('data/src/sample.csv', header=None, usecols=[1, 3])
+	df_none_usecols = pd.read_csv('data/src/sample.csv', header=None, usecols=[1, 3])
   
   usecolsで1、3「列」目だけが読み込まれる、これはヘッダーの名前でも可
   
@@ -66,11 +66,11 @@ pandasで列名を「ヘッダー（header）」、行名を「インデック�
 ● ファイルの先頭「行」を除外して読み込む場合
 -------------
 
-  df_none = pd.read_csv('data/src/sample.csv', header=None, skiprows=2)
+	df_none = pd.read_csv('data/src/sample.csv', header=None, skiprows=2)
   
   skiprowsで先頭から1「行」目まで除外され、2「行」目から始まる
   
-  df_none_skiprows = pd.read_csv('data/src/sample.csv', header=None, skiprows=[0, 2])
+	df_none_skiprows = pd.read_csv('data/src/sample.csv', header=None, skiprows=[0, 2])
   
   この場合、0「行」目と2「行」目が除外される
   
@@ -82,7 +82,7 @@ pandasで列名を「ヘッダー（header）」、行名を「インデック�
   
 ● ファイルの末「行」を除外して読み込む場合
 -------------
-  df_none_skipfooter = pd.read_csv('data/src/sample.csv', header=None, skipfooter=1, engine='python')
+	df_none_skipfooter = pd.read_csv('data/src/sample.csv', header=None, skipfooter=1, engine='python')
   
   skipfooterで最後の1「行」を除外（末尾を数えるときは0を含まない）
   
@@ -91,14 +91,14 @@ pandasで列名を「ヘッダー（header）」、行名を「インデック�
 ● 最初の数行だけを読み込む場合
 -------------
 
-  df_none_nrows = pd.read_csv('data/src/sample.csv', header=None, nrows=2)
+	df_none_nrows = pd.read_csv('data/src/sample.csv', header=None, nrows=2)
   
   nrowsで最初の2行（0行目と1行目）を読み込み
   
 --------------------------------------------------------------------------------------------
 ● 型を指定して読み込む場合
 -------------
-  df_str = pd.read_csv('data/src/sample_header_index_dtype.csv', index_col=0, dtype=str)
+	df_str = pd.read_csv('data/src/sample_header_index_dtype.csv', index_col=0, dtype=str)
   
   この場合すべての値がstrになる
   
@@ -109,7 +109,7 @@ pandasで列名を「ヘッダー（header）」、行名を「インデック�
 ● 列の型を指定したいとき
 -------------
 
-  df_str_col = pd.read_csv('data/src/sample_header_index_dtype.csv', index_col=0, dtype={'b': str, 'c': str})
+	df_str_col = pd.read_csv('data/src/sample_header_index_dtype.csv', index_col=0, dtype={'b': str, 'c': str})
   
   dtypeを辞書型で指定、列の指定はインデックスナンバーでもOK
   
@@ -139,14 +139,14 @@ pandasで列名を「ヘッダー（header）」、行名を「インデック�
 ● 指定の文字列をNaNとして認識させる場合
 -------------
 
-  df_nan_set_na = pd.read_csv('data/src/sample_header_index_nan.csv', index_col=0, na_values='-')
+	df_nan_set_na = pd.read_csv('data/src/sample_header_index_nan.csv', index_col=0, na_values='-')
   
   na_valuesによって-がNaNとして認識させる
 
 ● NaNとして認識させない
 -------------
 
-  df_nan_no_filter = pd.read_csv('data/src/sample_header_index_nan.csv', index_col=0, na_filter=False)
+	df_nan_no_filter = pd.read_csv('data/src/sample_header_index_nan.csv', index_col=0, na_filter=False)
   
   na_filter=Falseですべての値がNaNとは認識されない
   
