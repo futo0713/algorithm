@@ -1,0 +1,73 @@
+Sub Load()
+    MaxRow = Worksheets("ParamSheet").Range("A2").End(xlDown).Row
+    
+    '================================================================================================
+    'Sample number
+    Worksheets("Input").Range("B4").Value = Worksheets("ParamSheet").Cells(MaxRow, 1).Value
+    
+    'Date
+    Dim y As String
+    Dim m As String
+    Dim d As String
+    y = Worksheets("ParamSheet").Cells(MaxRow, 2).Value
+    m = Worksheets("ParamSheet").Cells(MaxRow, 3).Value
+    d = Worksheets("ParamSheet").Cells(MaxRow, 4).Value
+    Worksheets("Input").Range("B6").Value = y + "/" + m + "/" + d
+    
+    'Laser
+    Worksheets("Input").Range("B8").Value = Worksheets("ParamSheet").Cells(MaxRow, 5).Value
+    Worksheets("Input").Range("B9").Value = Worksheets("ParamSheet").Cells(MaxRow, 6).Value
+    Worksheets("Input").Range("B10").Value = Worksheets("ParamSheet").Cells(MaxRow, 7).Value
+    
+    'Fiber
+    Worksheets("Input").Range("B12").Value = Worksheets("ParamSheet").Cells(MaxRow, 8).Value
+    Worksheets("Input").Range("B13").Value = Worksheets("ParamSheet").Cells(MaxRow, 9).Value
+    
+    'Head
+    Worksheets("Input").Range("B15").Value = Worksheets("ParamSheet").Cells(MaxRow, 10).Value
+    Worksheets("Input").Range("B16").Value = Worksheets("ParamSheet").Cells(MaxRow, 11).Value
+    Worksheets("Input").Range("B17").Value = Worksheets("ParamSheet").Cells(MaxRow, 12).Value
+    Worksheets("Input").Range("B18").Value = Worksheets("ParamSheet").Cells(MaxRow, 13).Value
+    Worksheets("Input").Range("B19").Value = Worksheets("ParamSheet").Cells(MaxRow, 14).Value
+    Worksheets("Input").Range("B20").Value = Worksheets("ParamSheet").Cells(MaxRow, 15).Value
+    
+    'DBS Function
+    Worksheets("Input").Range("E6").Value = Worksheets("ParamSheet").Cells(MaxRow, 16).Value
+    Worksheets("Input").Range("E7").Value = Worksheets("ParamSheet").Cells(MaxRow, 17).Value
+    Worksheets("Input").Range("E8").Value = Worksheets("ParamSheet").Cells(MaxRow, 18).Value
+    Worksheets("Input").Range("E9").Value = Worksheets("ParamSheet").Cells(MaxRow, 19).Value
+    Worksheets("Input").Range("E10").Value = Worksheets("ParamSheet").Cells(MaxRow, 20).Value
+    
+    'Laser Conditions
+    Worksheets("Input").Range("E12").Value = Worksheets("ParamSheet").Cells(MaxRow, 25).Value
+    Worksheets("Input").Range("E13").Value = Worksheets("ParamSheet").Cells(MaxRow, 26).Value
+    Worksheets("Input").Range("E14").Value = Worksheets("ParamSheet").Cells(MaxRow, 27).Value
+    Worksheets("Input").Range("E15").Value = Worksheets("ParamSheet").Cells(MaxRow, 28).Value
+    Worksheets("Input").Range("E16").Value = Worksheets("ParamSheet").Cells(MaxRow, 29).Value
+    
+    'Material
+    Worksheets("Input").Range("E18").Value = Worksheets("ParamSheet").Cells(MaxRow, 30).Value
+    Worksheets("Input").Range("E19").Value = Worksheets("ParamSheet").Cells(MaxRow, 31).Value
+    Worksheets("Input").Range("E20").Value = Worksheets("ParamSheet").Cells(MaxRow, 32).Value
+    
+    'Nozzle
+    Worksheets("Input").Range("H6").Value = Worksheets("ParamSheet").Cells(MaxRow, 33).Value
+    Worksheets("Input").Range("H7").Value = Worksheets("ParamSheet").Cells(MaxRow, 34).Value
+    Worksheets("Input").Range("H8").Value = Worksheets("ParamSheet").Cells(MaxRow, 35).Value
+    Worksheets("Input").Range("H9").Value = Worksheets("ParamSheet").Cells(MaxRow, 36).Value
+    
+    'Gas
+    Worksheets("Input").Range("H11").Value = Worksheets("ParamSheet").Cells(MaxRow, 37).Value
+    Worksheets("Input").Range("H12").Value = Worksheets("ParamSheet").Cells(MaxRow, 38).Value
+    Worksheets("Input").Range("H13").Value = Worksheets("ParamSheet").Cells(MaxRow, 39).Value
+    
+    'Cutting Conditions
+    Worksheets("Input").Range("H15").Value = Worksheets("ParamSheet").Cells(MaxRow, 40).Value
+    Worksheets("Input").Range("H16").Value = Worksheets("ParamSheet").Cells(MaxRow, 41).Value
+    Worksheets("Input").Range("H17").Value = Worksheets("ParamSheet").Cells(MaxRow, 42).Value
+    Worksheets("Input").Range("H18").Value = Worksheets("ParamSheet").Cells(MaxRow, 43).Value
+    
+    'Cutting Result
+    Worksheets("Input").Range("H20").Value = Worksheets("ParamSheet").Cells(MaxRow, 44).Value
+
+End Sub
