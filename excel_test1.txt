@@ -1,0 +1,86 @@
+Sub Fill()
+    MaxRow = Worksheets("ParamSheet").Range("A2").End(xlDown).Row
+    NextRow = MaxRow + 1
+
+    'Cut result
+    Dim ans As Integer
+    ans = MsgBox("How is cutting?", vbYesNoCancel + vbQuestion, "Cutting check")
+    
+    If ans = vbYes Then
+        Worksheets("ParamSheet").Cells(NextRow, 44).Value = "Success"
+    ElseIf ans = vbNo Then
+        Worksheets("ParamSheet").Cells(NextRow, 44).Value = "Failure"
+    Else
+        End
+    End If
+    
+    
+    'Sample number
+    Worksheets("ParamSheet").Cells(NextRow, 1).Value = NextRow - 1
+    
+    'Date
+    Worksheets("ParamSheet").Cells(NextRow, 2).Value = Year(Date)
+    Worksheets("ParamSheet").Cells(NextRow, 3).Value = Month(Date)
+    Worksheets("ParamSheet").Cells(NextRow, 4).Value = Day(Date)
+    
+    'Laser
+    Worksheets("ParamSheet").Cells(NextRow, 5).Value = Worksheets("Input").Range("B8").Value
+    Worksheets("ParamSheet").Cells(NextRow, 6).Value = Worksheets("Input").Range("B9").Value
+    Worksheets("ParamSheet").Cells(NextRow, 7).Value = Worksheets("Input").Range("B10").Value
+    
+    'Fiber
+    Worksheets("ParamSheet").Cells(NextRow, 8).Value = Worksheets("Input").Range("B12").Value
+    Worksheets("ParamSheet").Cells(NextRow, 9).Value = Worksheets("Input").Range("B13").Value
+    
+    'Head
+    Worksheets("ParamSheet").Cells(NextRow, 10).Value = Worksheets("Input").Range("B15").Value
+    Worksheets("ParamSheet").Cells(NextRow, 11).Value = Worksheets("Input").Range("B16").Value
+    Worksheets("ParamSheet").Cells(NextRow, 12).Value = Worksheets("Input").Range("B17").Value
+    Worksheets("ParamSheet").Cells(NextRow, 13).Value = Worksheets("Input").Range("B18").Value
+    Worksheets("ParamSheet").Cells(NextRow, 14).Value = Worksheets("Input").Range("B19").Value
+    Worksheets("ParamSheet").Cells(NextRow, 15).Value = Worksheets("Input").Range("B20").Value
+    
+    'DBS Function
+    Worksheets("ParamSheet").Cells(NextRow, 16).Value = Worksheets("Input").Range("E6").Value
+    Worksheets("ParamSheet").Cells(NextRow, 17).Value = Worksheets("Input").Range("E7").Value
+    Worksheets("ParamSheet").Cells(NextRow, 18).Value = Worksheets("Input").Range("E8").Value
+    Worksheets("ParamSheet").Cells(NextRow, 19).Value = Worksheets("Input").Range("E9").Value
+    Worksheets("ParamSheet").Cells(NextRow, 20).Value = Worksheets("Input").Range("E10").Value
+    Worksheets("ParamSheet").Cells(NextRow, 21).Value = Worksheets("Input").Range("E11").Value
+    
+    'Focus Monitor
+    Worksheets("ParamSheet").Cells(NextRow, 21).Value = "-"
+    Worksheets("ParamSheet").Cells(NextRow, 22).Value = "-"
+    Worksheets("ParamSheet").Cells(NextRow, 23).Value = "-"
+    Worksheets("ParamSheet").Cells(NextRow, 24).Value = "-"
+    
+    'Laser conditions
+    Worksheets("ParamSheet").Cells(NextRow, 25).Value = Worksheets("Input").Range("E12").Value
+    Worksheets("ParamSheet").Cells(NextRow, 26).Value = Worksheets("Input").Range("E13").Value
+    Worksheets("ParamSheet").Cells(NextRow, 27).Value = Worksheets("Input").Range("E14").Value
+    Worksheets("ParamSheet").Cells(NextRow, 28).Value = Worksheets("Input").Range("E15").Value
+    Worksheets("ParamSheet").Cells(NextRow, 29).Value = Worksheets("Input").Range("E16").Value
+    
+    'Materials
+    Worksheets("ParamSheet").Cells(NextRow, 30).Value = Worksheets("Input").Range("E18").Value
+    Worksheets("ParamSheet").Cells(NextRow, 31).Value = Worksheets("Input").Range("E19").Value
+    Worksheets("ParamSheet").Cells(NextRow, 32).Value = Worksheets("Input").Range("E20").Value
+    
+    'Nozzle
+    Worksheets("ParamSheet").Cells(NextRow, 33).Value = Worksheets("Input").Range("H6").Value
+    Worksheets("ParamSheet").Cells(NextRow, 34).Value = Worksheets("Input").Range("H7").Value
+    Worksheets("ParamSheet").Cells(NextRow, 35).Value = Worksheets("Input").Range("H8").Value
+    Worksheets("ParamSheet").Cells(NextRow, 36).Value = Worksheets("Input").Range("H9").Value
+    
+    'Gas
+    Worksheets("ParamSheet").Cells(NextRow, 37).Value = Worksheets("Input").Range("H11").Value
+    Worksheets("ParamSheet").Cells(NextRow, 38).Value = Worksheets("Input").Range("H12").Value
+    Worksheets("ParamSheet").Cells(NextRow, 39).Value = Worksheets("Input").Range("H13").Value
+    
+    'Cutting Conditions
+    Worksheets("ParamSheet").Cells(NextRow, 40).Value = Worksheets("Input").Range("H15").Value
+    Worksheets("ParamSheet").Cells(NextRow, 41).Value = Worksheets("Input").Range("H16").Value
+    Worksheets("ParamSheet").Cells(NextRow, 42).Value = Worksheets("Input").Range("H17").Value
+    Worksheets("ParamSheet").Cells(NextRow, 43).Value = Worksheets("Input").Range("H18").Value
+
+End Sub
