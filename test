@@ -1,0 +1,144 @@
+import csv
+from glob import glob
+import matplotlib.pyplot as plt
+import numpy as np
+from time import sleep
+import os
+import sys
+
+
+dir_name = 'C:\\Users\FutoshiTsutsumi\Desktop\python_test\\NA_of_DIV\\NA_data'
+files = os.listdir(dir_name)
+print(files[0])
+
+with open(dir_name+"\{}".format(files[0]), "r") as f:
+    A = []
+    for line in f:
+        B = line.split("\n")
+        C = list(filter(lambda str:str != "", B))
+        D = C[0].split(",")
+        A.append(D)
+    E = A.pop(0)
+    F = A.pop(0)
+
+#--------------------------------------------------------------------
+na = []
+power = []
+for i in A:
+    na.append(float(i[0]))
+    power.append(float(i[1]))
+
+power_ratio = []
+for i in power:
+    power_ratio.append(100*i/power[0])
+#====================================================================
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+dimention = 20
+W1 = np.random.randn(dimention, 1)
+B1 = np.random.randn(dimention, 1)
+
+W2 = np.random.randn(1, dimention)
+B2 = np.random.randn(1, 1)
+
+learning_rate = 0.0008
+E_save = []
+
+num_of_itr = 100000
+for i in range(num_of_itr):
+    H = sigmoid(na*W1+B1)
+    y = np.dot(W2,H)+B2
+    E = np.sum((power_ratio-y)**2)
+    E_save = np.append(E_save,E)
+
+    # if i%(num_of_itr/10) == 0:
+    #     na_ = np.linspace(0.07,0.18,100)
+    #     H_ = sigmoid(na_*W1+B1)
+    #     y_ = np.dot(W2,H_)+B2
+    #     y_ = np.reshape(y_,(100,1))
+
+    #     fig = plt.figure()
+    #     plt.grid()
+    #     plt.xlabel("NA (rad)")
+    #     plt.ylabel("Power Ratio (%)")
+    #     plt.plot(na,power_ratio,'o',color="black",linestyle='dashed')
+    #     plt.plot(na_,y_,linestyle='solid')
+    #     plt.show()
+
+    dW2 = 2*np.sum(H*(y-power_ratio),axis=1)
+    dB2 = 2*np.sum(y-power_ratio)
+    dW1 = 2*W2*np.sum(na*H*(1-H)*(y-power_ratio),axis=1)
+    dB1 = 2*W2*np.sum(H*(1-H)*(y-power_ratio))
+
+    W1 = W1-learning_rate*dW1.T
+    W2 = W2-learning_rate*dW2
+    B1 = B1-learning_rate*dB1.T
+    B2 = B2-learning_rate*dB2
+
+#====================================================================
+
+na_ = np.linspace(0.07,0.18,100)
+H_ = sigmoid(na_*W1+B1)
+y_ = np.dot(W2,H_)+B2
+y_ = np.reshape(y_,(100,1))
+
+plt.figure()
+
+#--------------------------------------------------------------------
+a = 86.0
+
+dif = []
+for i in y_:
+    dif.append((i-a)**2)
+
+min_index = dif.index(min(dif))
+pr_86 =y_[min_index]
+na_86 = na_[min_index]
+
+a = 99.0
+
+dif = []
+for i in y_:
+    dif.append((i-a)**2)
+
+min_index = dif.index(min(dif))
+pr_99 = y_[min_index]
+na_99 = na_[min_index]
+
+#--------------------------------------------------------------------
+
+plt.plot(na_,y_,'.',linestyle='solid')
+plt.plot(na,power_ratio,'o',color="black")
+plt.plot(na_86,pr_86,'o',color='red')
+plt.plot(na_99,pr_99,'o',color='red')
+
+plt.grid()
+plt.xlabel("NA (rad)")
+plt.ylabel("Power Ratio (%)")
+
+save_dir = 'C:\\Users\FutoshiTsutsumi\Desktop\python_test\\NA_of_DIV\\fit_data'
+save_name = '\\fit_{}.png'.format(files[0].replace(".csv", ""))
+
+plt.savefig(save_dir + save_name)
+plt.show()
+
+print("NA(86%):{}".format(round(na_86,3)))
+print("NA(99%):{}".format(round(na_99,3)))
+
+save_dir = 'C:\\Users\FutoshiTsutsumi\Desktop\python_test\\NA_of_DIV\\fit_data'
+save_name = '\\fit_{}.txt'.format(files[0].replace(".csv", ""))
+
+with open(save_dir + save_name, mode='w') as f:
+    f.write("ORIGINAL\n")
+    f.write("NA,Power Ratio\n")
+    f.write("rad,%\n")
+    for i in zip(na,power_ratio):
+        f.write(str(i[0])+","+str(i[1])+"\n")
+    
+    f.write("\n")
+    f.write("FITTING\n")
+    f.write("NA,Power Ratio\n")
+    f.write("rad,%\n")
+    for i in zip(na_,y_):
+        f.write(str(i[0])+","+str(i[1][0])+"\n")
