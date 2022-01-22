@@ -1,0 +1,64 @@
+import cv2
+# import numpy as np
+# import glob
+import csv
+
+# import openpyxl
+# from openpyxl import Workbook, load_workbook
+# from openpyxl.chart import ScatterChart, LineChart, Reference, Series
+# from openpyxl.chart.shapes import GraphicalProperties
+# from openpyxl.chart.layout import Layout, ManualLayout
+# from openpyxl.chart.text import RichText
+# from openpyxl.drawing.text import Paragraph, ParagraphProperties, CharacterProperties, Font, RichTextProperties
+# from openpyxl.drawing.line import LineProperties
+# from copy import deepcopy
+
+def drawing(file_path, save_path):
+    img = cv2.imread(file_path)
+    img_rotate = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+    # flip = cv2.flip(img_rotate, 0)
+    gray = cv2.cvtColor(img_rotate, cv2.COLOR_BGR2GRAY)
+    ret, bin_img = cv2.threshold(gray, 20, 255, cv2.THRESH_BINARY)
+
+    # 垂直ストライプ
+    # raster = []
+    # for i in range(bin_img.shape[0]):
+    #     for j in range(bin_img.shape[1]):
+    #         value_i = bin_img[i][j]
+    #         if j != 0:
+    #             if value_pi - value_i < 0:
+    #                 raster.append([i,j])
+    #                 # 塗り始め
+    #             elif value_pi - value_i > 0:
+    #                 raster.append([i,j])
+    #                 # 塗り終わり
+
+    # 水平ストライプ
+    raster = []
+    for j in range(bin_img.shape[1]):
+        for i in range(bin_img.shape[0]):
+            value_i = bin_img[i][j]
+            if i != 0:
+                if value_pi - value_i < 0:
+                    raster.append([i,j])
+                    # 塗り始め
+                elif value_pi - value_i > 0:
+                    raster.append([i,j])
+                    # 塗り終わり
+
+            value_pi = bin_img[i][j]
+
+    with open('raster_test.csv', 'w', newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["X","Y"])
+        writer.writerows(raster)
+
+
+def main():
+    file_path = "C:\\Users\FUTOSHI\Dropbox\Futoshi_Mac\Python_PJ\\1_OUTLINE\\test_1.jpg"
+    save_path = "C:\\Users\FUTOSHI\Dropbox\Futoshi_Mac\Python_PJ\\1_OUTLINE\csv"
+    drawing(file_path, save_path)
+
+
+if __name__ == "__main__":
+    main()
